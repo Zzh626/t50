@@ -1,0 +1,24 @@
+#/bin/sh
+
+# Checks if all necessary dependencies are in place.
+unset ERROR
+if ! which make > /dev/null 2>&1; then echo 'make needed...'; ERROR=1; fi
+if ! which gzip > /dev/null 2>&1; then echo 'gzip needed...'; ERROR=1; fi
+
+if [ ${ERROR} ]; then
+  echo 'Packages missing. Aborted.'
+  exit 1
+fi
+
+cat <<@@
+To comple and install:
+
+  $ make
+  $ sudo make install
+
+To uninstall:
+
+  $ sudo make uninstall
+@@
+
+exit 0
